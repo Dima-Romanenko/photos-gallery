@@ -12,5 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('gallery.index');
 });
+
+Route::auth();
+
+Route::get('/home', 'HomeController@index');
