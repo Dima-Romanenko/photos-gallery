@@ -15,6 +15,13 @@ Route::get('/', function () {
     return view('gallery.index');
 });
 
-Route::auth();
+Route::group([
+    'middleware'=>'auth',
+], function() {
 
-Route::get('/home', 'HomeController@index');
+    Route::resource('user', "PhotoController",['except' => [
+        'show'
+    ]]);
+
+    Route::get('/home', 'HomeController@index');
+});
