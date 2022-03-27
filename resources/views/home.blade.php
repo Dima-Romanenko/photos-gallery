@@ -10,9 +10,7 @@
                 <div class="panel-body">
                     You are logged in!
                 </div>
-                <div>
-                    <a href="{{route('user.create')}}"class="btn btn-success"><i class="fa fa-plus">Add photo</i></a>
-                </div>
+
             </div>
         </div>
     </div>

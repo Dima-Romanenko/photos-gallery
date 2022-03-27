@@ -19,9 +19,11 @@ Route::group([
     'middleware'=>'auth',
 ], function() {
 
-    Route::resource('user', "PhotoController",['except' => [
+    Route::resource('photos', "PhotoController",['except' => [
         'show'
     ]]);
 
     Route::get('/home', 'HomeController@index');
 });
+
+Route::auth();

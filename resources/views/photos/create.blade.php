@@ -9,7 +9,7 @@
 
                     <div class="panel-body">
 {{--                        @include('errors.errors')--}}
-                        <form action="{{ route('user.store') }}" method="POST" enctype="multipart/form-data" class="form-horizontal">
+                        <form action="{{ route('photos.store') }}" method="POST" enctype="multipart/form-data" class="form-horizontal">
                         {{ csrf_field() }}
 
                         <!-- Имя задачи -->

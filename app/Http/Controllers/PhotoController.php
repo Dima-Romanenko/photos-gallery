@@ -1,22 +1,43 @@
 <?php
 
 namespace App\Http\Controllers;
-use Storage;
+
 use App\Models\Photo;
 use Illuminate\Http\Request;
+
+use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
-
-
 
 class PhotoController extends Controller
 {
-    public function create()
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request)
     {
-        return view('user.create');
+        $photos = Auth::user()->photos()->get();
+        return view('photos.index', ['photos'=>$photos]);
     }
 
-    public function store(Request $request)
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
     {
+        return view('photos.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request) {
         $this->validate($request, [
             'name'=>'required|max:255',
             'description'=>'required|max:255',
@@ -25,15 +46,107 @@ class PhotoController extends Controller
         $img = $request->file('photo');
         $name = time() . $img->getClientOriginalName();
         $img->move('public', $name);
-        Photo::create(['photo'=>$name]);
 
-        $photo = new Photo();
-        $photo->name = $request->name;
-        $photo->description = $request->description;
-        $photo->url = 'public/public/' . $request->photo;
+        Auth::user()->photos()->create(['name'=>$request->name, 'description'=>$request->description, 'url'=> '/public/' . $name]);
 
-        $photo->save();
+        $photos = Auth::user()->photos;
 
-        return view('/home');
+        return redirect(route('photos.index'));
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
     }
 }
+
+
+//<?php
+//
+//namespace App\Http\Controllers;
+//use Storage;
+//use App\Models\Photo;
+//use Illuminate\Http\Request;
+//use Illuminate\Support\Facades\Auth;
+//
+//
+//
+//class PhotoController extends Controller
+//{
+//    /**
+//     * @return \Illuminate\Http\Response
+//     *
+//     */
+//    public function index()
+//    {
+//        $photos = [];
+//        return view('photos.index', ['photos'=>$photos]);
+//    }
+//
+//    public function create()
+//    {
+//        return view('photos.create');
+//    }
+//
+//    public function store(Request $request)
+//    {
+//        $this->validate($request, [
+//            'name'=>'required|max:255',
+//            'description'=>'required|max:255',
+//            'photo'=>'required|mimes:jpeg,jpg'
+//        ]);
+//        $img = $request->file('photo');
+//        $name = time() . $img->getClientOriginalName();
+//        $img->move('public', $name);
+//        dd($request);
+//        $photo = new Photo();
+//        $photo->name = $request->name;
+//        $photo->description = $request->description;
+//        $photo->url = 'public/public/' . $name;
+//
+//        $photo->save();
+
+
+//        return view('/home', ['photos'=>$photos]);
+//    }
+//}
