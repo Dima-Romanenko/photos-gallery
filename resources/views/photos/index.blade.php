@@ -11,15 +11,16 @@
                         <!-- Текущие задачи -->
                             <div class="row">
                                 @foreach($photos as $photo)
-                                    <div class="col-md-4">
+                                    <div class="col-md-12">
                                         <div class="thumbnail">
-                                            <a href="/w3images/lights.jpg">
                                                 <img src="{{$photo->url}}" alt="Lights" style="width:100%">
                                                 <div class="caption">
                                                     <h5>{{$photo->name}}</h5>
                                                     <p>{{$photo->description}}</p>
+                                                    <div class="row">
+                                                        <div class="btn btn-danger btn-sm end-block" style="margin:10px">Удалить</div>
+                                                    </div>
                                                 </div>
-                                            </a>
                                         </div>
                                     </div>
                                 @endforeach

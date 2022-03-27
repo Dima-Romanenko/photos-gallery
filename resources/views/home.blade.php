@@ -8,7 +8,19 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
-                    You are logged in!
+                    <div class="row">
+                        @foreach($photos as $photo)
+                            <div class="col-md-4">
+                                <div class="thumbnail">
+                                    <img src="{{$photo->url}}" alt="Lights" style="width:100%">
+                                    <div class="caption">
+                                        <h5>{{$photo->name}}</h5>
+                                        <p>{{$photo->description}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
 
             </div>
