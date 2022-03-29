@@ -71,7 +71,7 @@ class PhotoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Photo $photo)
     {
         //
     }
@@ -94,59 +94,10 @@ class PhotoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Photo $photos)
     {
-        //
+        $photos->delete();
+        return redirect()->back();
     }
 }
 
-
-//<?php
-//
-//namespace App\Http\Controllers;
-//use Storage;
-//use App\Models\Photo;
-//use Illuminate\Http\Request;
-//use Illuminate\Support\Facades\Auth;
-//
-//
-//
-//class PhotoController extends Controller
-//{
-//    /**
-//     * @return \Illuminate\Http\Response
-//     *
-//     */
-//    public function index()
-//    {
-//        $photos = [];
-//        return view('photos.index', ['photos'=>$photos]);
-//    }
-//
-//    public function create()
-//    {
-//        return view('photos.create');
-//    }
-//
-//    public function store(Request $request)
-//    {
-//        $this->validate($request, [
-//            'name'=>'required|max:255',
-//            'description'=>'required|max:255',
-//            'photo'=>'required|mimes:jpeg,jpg'
-//        ]);
-//        $img = $request->file('photo');
-//        $name = time() . $img->getClientOriginalName();
-//        $img->move('public', $name);
-//        dd($request);
-//        $photo = new Photo();
-//        $photo->name = $request->name;
-//        $photo->description = $request->description;
-//        $photo->url = 'public/public/' . $name;
-//
-//        $photo->save();
-
-
-//        return view('/home', ['photos'=>$photos]);
-//    }
-//}

@@ -11,19 +11,18 @@
 |
 */
 
-Route::get('/', function () {
-    return view('gallery.index');
-});
+//Route::get('/', function () {
+//    return view('gallery.index');
+//});
 
 Route::group([
     'middleware'=>'auth',
 ], function() {
 
-    Route::resource('photos', "PhotoController",['except' => [
-        'show'
-    ]]);
+    Route::resource('photos', "PhotoController");
 
     Route::get('/home', 'HomeController@index');
-});
 
+});
+Route::get('/', 'MainController@index')->name('gallery.index');
 Route::auth();

@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    </style>
     <div class="container">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
@@ -18,7 +19,11 @@
                                                     <h5>{{$photo->name}}</h5>
                                                     <p>{{$photo->description}}</p>
                                                     <div class="row">
-                                                        <div class="btn btn-danger btn-sm end-block" style="margin:10px">Удалить</div>
+                                                        <form method="POST" action="{{route('photos.destroy', $photo->id)}}">
+                                                            {{csrf_field()}}
+                                                            {{method_field('DELETE')}}
+                                                            <button class="btn btn-danger btn-sm end-block" style="margin:10px">Удалить</button>
+                                                        </form>
                                                     </div>
                                                 </div>
                                         </div>

@@ -27,4 +27,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Photo::class);
     }
+
+    public function userPhoto() {
+        foreach (User::all() as $user) {
+            foreach ($user->photos as $photo) {
+                return $photo;
+            }
+        }
+    }
 }
