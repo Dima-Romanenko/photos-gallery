@@ -60,9 +60,9 @@ class PhotoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Photo $photos)
     {
-        //
+        dd($photos);
     }
 
     /**
@@ -71,7 +71,7 @@ class PhotoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Photo $photo)
+    public function edit()
     {
         //
     }

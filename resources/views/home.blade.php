@@ -2,12 +2,11 @@
 
 @section('content')
 <style>
-    .card {
-        cursor: pointer;
+    .p-0 {
+        padding: 0;
     }
-    .card:hover {
-        transform: scale(1.2);
-        transition: 500ms;
+    .photo {
+        width: 100%;
     }
 </style>
 <div class="container">
@@ -19,15 +18,19 @@
                 <div class="panel-body">
                     <div class="row">
                         @foreach($photos as $photo)
-
-                                <div class="col-md-4 card">
-                                    <div class="thumbnail">
-                                        <img src="{{$photo->url}}" alt="Lights" style="width:100%">
-                                        <div class="caption">
-                                            <h5>{{$photo->name}}</h5>
-                                            <p>{{$photo->description}}</p>
-                                        </div>
+                                <div class="col-md-4 p-0">
+                                    <div>
+                                        <img src="{{$photo->url}}" class="photo" alt="Lights" style="width:100%">
+{{--                                       <div class="caption">--}}
+{{--                                          <h5>{{$photo->name}}</h5>--}}
+{{--                                           <p>{{$photo->description}}</p>--}}
+{{--                                        </div>--}}
+{{--                                        <form method="get" action="{{route('photos.show', $photo->id)}}">--}}
+{{--                                            {{csrf_field()}}--}}
+{{--                                            <button class="btn btn-success btn-sm">Show</button>--}}
+{{--                                        </form>--}}
                                     </div>
+
                                 </div>
 
                         @endforeach
