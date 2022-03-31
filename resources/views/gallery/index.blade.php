@@ -21,9 +21,11 @@
 
                     <div class="panel-body p-0">
                         @foreach($photos as $photo)
+                            <a href="{{route('photos.show', $photo->id)}}">
                             <div class="col-md-4 p-0">
                                     <img src="{{$photo->url}}" alt="Lights" class="photo">
                             </div>
+                            </a>
                         @endforeach
                     </div>
                     <div class="justify-center">{{$photos->links()}}</div>

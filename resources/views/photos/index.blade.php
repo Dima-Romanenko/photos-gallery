@@ -12,23 +12,22 @@
                         <!-- Текущие задачи -->
                             <div class="row">
                                 @foreach($photos as $photo)
-                                    <div class="col-md-12">
-
-                                        <div class="thumbnail">
-                                            <img src="{{$photo->url}}" alt="Lights" style="width:100%">
-                                            <div class="caption">
-                                                <h5>{{$photo->name}}</h5>
-                                                <p>{{$photo->description}}</p>
-                                                <div class="row">
-                                                    <form method="POST" action="{{route('photos.destroy', $photo->id)}}">
-                                                        {{csrf_field()}}
-                                                        {{method_field('DELETE')}}
-                                                        <button class="btn btn-danger btn-sm end-block" style="margin:10px">Удалить</button>
-                                                    </form>
+                                        <div class="col-md-12">
+                                            <div class="thumbnail">
+                                                <img src="{{$photo->url}}" alt="Lights" style="width:100%">
+                                                <div class="caption">
+                                                    <h5>{{$photo->name}}</h5>
+                                                    <p>{{$photo->description}}</p>
+                                                    <div class="row">
+                                                        <form method="POST" action="{{route('photos.destroy', $photo->id)}}">
+                                                            {{csrf_field()}}
+                                                            {{method_field('DELETE')}}
+                                                            <button class="btn btn-danger btn-sm end-block" style="margin:10px">Удалить</button>
+                                                        </form>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
                                 @endforeach
                             </div>
                     </div>

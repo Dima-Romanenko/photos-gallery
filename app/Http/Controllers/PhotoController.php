@@ -62,7 +62,7 @@ class PhotoController extends Controller
      */
     public function show(Photo $photos)
     {
-        dd($photos);
+        return view('gallery.photo', ['photos'=>$photos]);
     }
 
     /**
